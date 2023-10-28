@@ -1,12 +1,18 @@
 name: Python application test with Github Actions
-on: [push]
+
+on:
+  push:
+    branches:
+      - main  # Adjust this to your main branch name
+
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
     - uses: actions/checkout@v2
     - name: Set up Python 3.8
-      uses: actions/setup-python@v1
+      uses: actions/setup-python@v2  # Update to use the latest version of actions/setup-python
       with:
         python-version: 3.8
     - name: Install dependencies
@@ -16,8 +22,9 @@ jobs:
       run: |
         make lint
     - name: Test with Pytest
-      run: I
+      run: |
         make test
     - name: Format code with Python black
       run: |
         make format
+
